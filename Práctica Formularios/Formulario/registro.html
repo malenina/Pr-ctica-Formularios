@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro</title>
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <form id="registroForm">
+    <fieldset>
+      <legend>Formulario de registro</legend>
+
+      <input type="text" id="usuario" placeholder="Nombre de usuario" required>
+      <input type="email" id="email" placeholder="Email" required>
+
+      <div class="password-group">
+        <input type="password" id="contrasena" placeholder="Contraseña" required>
+        <button type="button" id="togglePassword">&#128065;</button>
+        <input type="password" id="repetirContrasena" placeholder="Repita contraseña" required>
+      </div>
+
+      <input type="text" id="nombreCompleto" placeholder="Nombre Completo" required>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="acepta" required>
+        <label for="acepta">
+          He leído y acepto los <strong>Términos y Condiciones</strong> y la <strong>Política de Privacidad</strong>
+        </label>
+      </div>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="noCorreos">
+        <label for="noCorreos">No quiero recibir correos electrónicos sobre nuevos productos</label>
+      </div>
+
+      <button type="submit">ACCEDER</button>
+    </fieldset>
+  </form>
+
+  <script>
+    const toggleBtn = document.getElementById("togglePassword");
+    toggleBtn.addEventListener("click", () => {
+      const pwd = document.getElementById("contrasena");
+      pwd.type = pwd.type === "password" ? "text" : "password";
+    });
+
+    document.getElementById("registroForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const usuario = document.getElementById("usuario").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const contrasena = document.getElementById("contrasena").value;
+      const repetir = document.getElementById("repetirContrasena").value;
+      const nombre = document.getElementById("nombreCompleto").value.trim();
+      const acepta = document.getElementById("acepta").checked;
+
+      if (!acepta) {
+        alert("Debe aceptar los Términos y Condiciones.");
+        return;
+      }
+
+      if (contrasena !== repetir) {
+        alert("Las contraseñas no coinciden.");
+        return;
+      }
+
+      const datos = {
+        usuario,
+        email,
+        nombre,
+      };
+
+      sessionStorage.setItem("registroData", JSON.stringify(datos));
+      window.location.href = "confirmacion.html?form=registro";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmación</title>
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <h2>Datos Enviados</h2>
+  <div id="resumen"></div>
+
+  <script>
+ const params = new URLSearchParams(window.location.search);
+    const form = params.get("form");
+    const data = JSON.parse(sessionStorage.getItem(`${form}Data`));
+    if (data) {
+      let resumen = "";
+      for (let key in data) {
+        resumen += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+      }
+      document.getElementById("resumen").innerHTML = resumen;
+    } else {
+      document.getElementById("resumen").textContent = "Resumen de datos enviados";
+    }
+  </script>
+</body>
+</html>

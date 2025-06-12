@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Suscripción</title>
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <form id="newsletterForm">
+    <fieldset>
+      <legend>Suscripción a la newsletter</legend>
+
+      <label for="nombre">NOMBRE</label>
+      <input type="text" id="nombre" placeholder="Sólo tu nombre" required>
+
+      <label for="email">EMAIL</label>
+      <input type="email" id="email" placeholder="Introduzca su correo electrónico" required>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="privacidad" required>
+        <label for="privacidad">Sí, acepto la política de privacidad</label>
+      </div>
+
+      <p><strong><u>INFORMACIÓN BÁSICA SOBRE PROTECCIÓN DE DATOS</u></strong></p>
+      <p class="info-text">
+        Texto explicativo sobre qué datos se almacenan, quién es el responsable, su objetivo y legitimación y, cómo se pueden eliminar los datos.
+      </p>
+
+      <button type="submit">Suscribirse</button>
+    </fieldset>
+  </form>
+    <script>
+    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const privacidad = document.getElementById("privacidad").checked;
+
+      if (!privacidad) {
+        alert("Debe aceptar la política de privacidad.");
+        return;
+      }
+
+      sessionStorage.setItem("suscripcionData", JSON.stringify({ nombre, email }));
+      window.location.href = "confirmacion.html?form=suscripcion";
+    });
+  </script>
+</body>
+</html>
+</body>
+</html>

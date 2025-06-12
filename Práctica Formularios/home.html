@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio</title>
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <h2>Bienvenido</h2>
+  <ul>
+    <li><a href="Formulario/contacto.html">Formulario de Contacto</a></li>
+    <li><a href="Formulario/suscripcion.html">Formulario de Suscripción</a></li>
+    <li><a href="Formulario/acceso.html">Formulario de Acceso</a></li>
+    <li><a href="Formulario/registro.html">Formulario de Registro</a></li>
+  </ul>
+  <script>
+    if (!sessionStorage.getItem("loggedIn")) {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

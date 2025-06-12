@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Acceso</title>
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <div class="login-container">
+    <form id="formAcceso">
+      <h2>Formulario de acceso</h2>
+
+      <div class="campos">
+        <input type="text" id="usuario" placeholder="Email o NIF" required>
+        <input type="password" id="contrasena" placeholder="Contraseña" required>
+      </div>
+
+      <div class="mantener-sesion">
+        <label for="mantener"><strong>Mantener la sesión iniciada</strong></label>
+        <select id="mantener">
+          <option value="no">NO</option>
+          <option value="si">SÍ</option>
+        </select>
+      </div>
+
+      <div class="recordar">
+        <a href="#">Recordar contraseña</a>
+      </div>
+
+      <button type="submit">ACCEDER</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("formAcceso").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const usuarioCorrecto = "usuario@correo.com";
+      const contrasenaCorrecta = "123456";
+
+      const usuario = document.getElementById("usuario").value.trim();
+      const contrasena = document.getElementById("contrasena").value;
+
+      if (usuario === usuarioCorrecto && contrasena === contrasenaCorrecta) {
+        sessionStorage.setItem("usuario", usuario);
+        window.location.href = "../home.html";
+      } else {
+        alert("Credenciales incorrectas. Intenta de nuevo.");
+      }
+    });
+  </script>
+</body>
+</html>

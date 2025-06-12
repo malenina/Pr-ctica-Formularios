@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Contacto</title>
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+
+  <form id="formContacto" onsubmit="validarContacto(event)">
+    <fieldset>
+      <legend>Contactar con nosotros</legend>
+
+      <label for="nombre">NOMBRE</label>
+      <input type="text" id="nombre" placeholder="Introduzca su nombre" required>
+
+      <label for="email">EMAIL</label>
+      <input type="email" id="email" placeholder="Introduzca su correo electrónico" required>
+
+      <label for="mensaje">MENSAJE</label>
+      <textarea id="mensaje" placeholder="Escriba su mensaje" required></textarea>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="privacidad" required>
+        <label for="privacidad">Sí, acepto la política de privacidad</label>
+      </div>
+
+      <p class="info-text">
+        Texto explicativo sobre qué datos se almacenan, quién es el responsable, su objetivo y legitimación y, cómo se pueden eliminar los datos.
+      </p>
+
+      <button type="submit">Enviar</button>
+    </fieldset>
+  </form>
+
+  <script>
+    function validarContacto(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+      const privacidad = document.getElementById('privacidad').checked;
+
+      if (!nombre || !email || !mensaje || !privacidad) {
+        alert('Por favor, completa todos los campos y acepta la política de privacidad.');
+        return;
+      }
+      
+      if (!email.includes("@") || !email.includes(".")) {
+    alert("Correo no válido.");
+    return;
+  }
+
+  const datos = { nombre, email, mensaje };
+  sessionStorage.setItem("contacto", JSON.stringify(datos));
+  window.location.href = "confirmacion.html?form=contacto";
+}
+  </script>
+
+</body>
+</html>
